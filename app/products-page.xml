@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Products List">
+        <NavigationButton text="Back" tap="goBack" android.systemIcon="ic_menu_back"/>
+    </ActionBar>
+    <ScrollView>
+        <StackLayout padding="16">
+            <!-- Admin Fee -->
+            <GridLayout columns="auto, *" class="header" marginBottom="16">
+                <Label col="0" text="Admin Fee (€)" class="h2" style="font-weight: bold; font-size: 16;"/>
+                <TextField col="1" 
+                          text="{{ adminFee }}"
+                          keyboardType="number"
+                          hint="Enter admin fee"
+                          style="background-color: white; padding: 8; margin-left: 8; border-width: 1; border-color: #ddd; border-radius: 4;"
+                          textChange="{{ updateAdminFee }}"/>
+            </GridLayout>
+
+            <!-- Headers -->
+            <GridLayout columns="*, *, *" class="header" marginBottom="8">
+                <Label col="0" text="Product" class="h2" style="font-weight: bold; font-size: 16;"/>
+                <Label col="1" text="Price (€)" class="h2" style="font-weight: bold; font-size: 16;"/>
+                <Label col="2" text="Stock" class="h2" style="font-weight: bold; font-size: 16;"/>
+            </GridLayout>
+            
+            <!-- Products List -->
+            <ListView items="{{ products }}" height="{{ products.length * 60 }}" separatorColor="#ddd">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, *, *" rows="auto" padding="8" margin="4" backgroundColor="#f8f8f8" borderRadius="4">
+                        <TextField col="0" 
+                                 text="{{ name }}" 
+                                 hint="New Product"
+                                 style="background-color: white; padding: 8; margin: 4; border-width: 1; border-color: #ddd; border-radius: 4;"
+                                 textChange="{{ $parent._bindingContext.updateName($index, $value) }}"/>
+                        <TextField col="1" 
+                                 text="{{ pricePerUnit }}" 
+                                 hint="New"
+                                 keyboardType="number"
+                                 style="background-color: white; padding: 8; margin: 4; border-width: 1; border-color: #ddd; border-radius: 4;"
+                                 textChange="{{ $parent._bindingContext.updatePrice($index, $value) }}"/>
+                        <TextField col="2" 
+                                 text="{{ stockNeeded }}"
+                                 hint="New"
+                                 keyboardType="number"
+                                 style="background-color: white; padding: 8; margin: 4; border-width: 1; border-color: #ddd; border-radius: 4;"
+                                 textChange="{{ $parent._bindingContext.updateStock($index, $value) }}"/>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+            
+            <!-- Save Button -->
+            <Button text="Save Changes" 
+                    tap="{{ saveChanges }}" 
+                    style="background-color: #2196F3; color: white; font-weight: bold; padding: 16; margin: 16; border-radius: 4;"/>
+        </StackLayout>
+    </ScrollView>
+</Page>

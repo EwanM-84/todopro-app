@@ -1,0 +1,70 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'AlexBush';
+  src: url('./assets/fonts/AlexBush-Regular.ttf') format('truetype');
+}
+
+.font-signature {
+  font-family: 'AlexBush', cursive;
+}
+
+/* FullCalendar Custom Styles */
+:root {
+  --fc-border-color: #DAA520;
+  --fc-button-bg-color: #DAA520;
+  --fc-button-border-color: #DAA520;
+  --fc-button-hover-bg-color: #B8860B;
+  --fc-button-hover-border-color: #B8860B;
+  --fc-button-active-bg-color: #B8860B;
+  --fc-button-active-border-color: #B8860B;
+  --fc-event-bg-color: #DAA520;
+  --fc-event-border-color: #DAA520;
+  --fc-today-bg-color: rgba(218, 165, 32, 0.1);
+}
+
+.fc .fc-button {
+  @apply font-normal text-sm;
+}
+
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  @apply shadow-none;
+}
+
+.fc .fc-toolbar-title {
+  @apply text-[#DAA520] font-bold;
+}
+
+.fc .fc-event {
+  @apply cursor-pointer;
+}
+
+@layer base {
+  html {
+    @apply h-full;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  body {
+    @apply h-full bg-gray-100;
+  }
+  #root {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg transition-colors;
+  }
+  
+  .btn-primary {
+    @apply bg-purple-600 text-white hover:bg-purple-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+}

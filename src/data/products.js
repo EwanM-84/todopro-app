@@ -1,0 +1,21 @@
+export const PRODUCTS = [
+    { code: 'DPC15', name: 'DPC15', pricePerUnit: 4.80, stockNeeded: 0.00, pricePerDay: 4.80 },
+    { code: 'DPC10', name: 'DPC10', pricePerUnit: 3.50, stockNeeded: 0.00, pricePerDay: 3.50 },
+    { code: 'DPC5', name: 'DPC5', pricePerUnit: 1.60, stockNeeded: 0.00, pricePerDay: 1.60 },
+    { code: 'CAPAG10', name: 'CapaG10', pricePerUnit: 7.00, stockNeeded: 1.00, pricePerDay: 7.00 },
+    { code: 'CAPAF5', name: 'CapaF5', pricePerUnit: 7.00, stockNeeded: 0.50, pricePerDay: 7.00 },
+    { code: 'PEXT', name: 'Pintura.ext', pricePerUnit: 1.67, stockNeeded: 0.25, pricePerDay: 1.67 },
+    { code: 'PINT', name: 'pintura.int', pricePerUnit: 1.00, stockNeeded: 0.20, pricePerDay: 1.00 },
+    { code: 'FCOAT', name: 'floorcoat', pricePerUnit: 4.44, stockNeeded: 0.33, pricePerDay: 4.44 },
+    { code: 'JUNTASL', name: 'JuntasL', pricePerUnit: 1.50, stockNeeded: 0.50, pricePerDay: 1.50 },
+    { code: 'JUNTASP', name: 'JuntasP', pricePerUnit: 0.75, stockNeeded: 0.25, pricePerDay: 0.75 },
+    { code: 'JCOM', name: 'JointCom', pricePerUnit: 1.00, stockNeeded: 0.00, pricePerDay: 1.00 },
+    { code: 'PWP', name: 'PladurWP', pricePerUnit: 1.70, stockNeeded: 0.00, pricePerDay: 1.70 },
+    { code: 'PN', name: 'pladurN', pricePerUnit: 1.40, stockNeeded: 0.00, pricePerDay: 1.40 },
+    { code: 'STEELP', name: 'SteelP', pricePerUnit: 1.00, stockNeeded: 0.00, pricePerDay: 1.00 },
+    { code: 'AMOHO', name: 'Anti-moho', pricePerUnit: 2.66, stockNeeded: 0.00, pricePerDay: 2.66 },
+    { code: 'SUPP', name: 'Supplies', pricePerUnit: 50.00, stockNeeded: 0.00, pricePerDay: 50.00 },
+    { code: 'BOLSAS', name: 'Bolsas', pricePerUnit: 0.30, stockNeeded: 0.00, pricePerDay: 0.30 },
+    { code: 'BASURA', name: 'basura', pricePerUnit: 90.00, stockNeeded: 0.00, pricePerDay: 90.00 },
+    { code: 'DAYS', name: 'Days', pricePerUnit: 200.00, stockNeeded: 0.00, pricePerDay: 200.00 }
+];

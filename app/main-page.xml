@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Todopro Canarias Product Calculator">
+        <NavigationButton text="Products" tap="goToProducts" android.systemIcon="ic_menu_info_details" ios.systemIcon="16" android.position="actionBar"/>
+    </ActionBar>
+    <ScrollView>
+        <StackLayout padding="16">
+            <!-- Client Information -->
+            <Label text="Client Information" class="h2" />
+            <TextField text="{{ clientName }}" hint="Client Name" class="input" returnKeyType="done" returnPress="{{ saveClientDetails }}" />
+            <TextField text="{{ clientAddress }}" hint="Client Address" class="input" returnKeyType="done" returnPress="{{ saveClientDetails }}" />
+            <TextField text="{{ clientPhone }}" hint="Client Phone" keyboardType="phone" class="input" returnKeyType="done" returnPress="{{ saveClientDetails }}" />
+            <TextField text="{{ clientEmail }}" hint="Client Email" keyboardType="email" class="input" returnKeyType="done" returnPress="{{ saveClientDetails }}" />
+            <TextField text="{{ clientDieNie }}" hint="Client DIE/NIE" class="input" returnKeyType="done" returnPress="{{ saveClientDetails }}" />
+
+            <!-- Days Section -->
+            <TextField text="{{ days }}" keyboardType="number" hint="Days" class="input" returnKeyType="done" returnPress="{{ calculateTotals }}" />
+            <Label text="{{ 'Labor Cost: €' + laborCost }}" />
+
+            <!-- Products Section -->
+            <Label text="Products" class="h2" marginTop="16" />
+            <StackLayout>
+                <Repeater items="{{ [1,2,3,4,5,6] }}" visibility="{{ $value <= visibleProducts ? 'visible' : 'collapsed' }}">
+                    <Repeater.itemTemplate>
+                        <StackLayout class="product-item">
+                            <ListPicker items="{{ $parent._bindingContext.products }}" 
+                                      selectedIndex="{{ $parent._bindingContext.selectedIndices[$index - 1] }}" 
+                                      class="picker" />
+                            <TextField text="{{ $parent._bindingContext.units[$index - 1] }}" 
+                                     hint="Units" 
+                                     keyboardType="number" 
+                                     class="input-edit" 
+                                     returnKeyType="done" />
+                        </StackLayout>
+                    </Repeater.itemTemplate>
+                </Repeater>
+                <Button text="+" class="btn-add" tap="{{ addProduct }}" />
+            </StackLayout>
+
+            <!-- Stock Needed Section -->
+            <StackLayout class="totals" marginTop="16">
+                <Label text="Stock Needed" class="h2" />
+                <ListView items="{{ getStockBreakdown() }}" height="{{ getStockBreakdown().length * 40 }}" separatorColor="#eee">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, *, auto" padding="8">
+                            <Label col="0" text="{{ productName }}" />
+                            <Label col="1" text="{{ stockAmount }}" />
+                            <Label col="2" text="{{ '€' + stockPrice }}" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                <Label text="{{ 'Total Stock Cost: €' + totalStockCost }}" class="cost-label" marginTop="8" />
+            </StackLayout>
+
+            <!-- Client Details Section -->
+            <StackLayout class="totals" marginTop="16">
+                <GridLayout columns="*, auto" class="header">
+                    <Label col="0" text="Client Details" class="h2" />
+                    <Button col="1" text="Clear" tap="{{ clearClientDetails }}" class="btn-clear" visibility="{{ savedClientDetails ? 'visible' : 'collapsed' }}" />
+                </GridLayout>
+                <Label text="{{ savedClientDetails ? 'Name: ' + savedClientDetails.name : 'Name: Not provided' }}" class="detail-label" />
+                <Label text="{{ savedClientDetails ? 'Address: ' + savedClientDetails.address : 'Address: Not provided' }}" class="detail-label" />
+                <Label text="{{ savedClientDetails ? 'Phone: ' + savedClientDetails.phone : 'Phone: Not provided' }}" class="detail-label" />
+                <Label text="{{ savedClientDetails ? 'Email: ' + savedClientDetails.email : 'Email: Not provided' }}" class="detail-label" />
+                <Label text="{{ savedClientDetails ? 'DIE/NIE: ' + savedClientDetails.dieNie : 'DIE/NIE: Not provided' }}" class="detail-label" />
+            </StackLayout>
+
+            <!-- Totals -->
+            <StackLayout class="totals" marginTop="16">
+                <Label text="Calculation Summary" class="h2" />
+                <Label text="{{ 'Total Stock Needed: ' + totalStockNeeded }}" />
+                <Label text="{{ 'Product Costs: €' + productCosts }}" />
+                <Label text="{{ 'Labor: €' + laborCost }}" />
+                <Label text="{{ 'Running Total: €' + runningTotal }}" />
+                <Label text="{{ 'Admin Cost: €' + adminCost }}" />
+                <Label text="{{ 'Commission (10%): €' + commission }}" />
+                <Label text="{{ 'Subtotal: €' + subtotal }}" />
+                <Label text="{{ 'VAT (7%): €' + vat }}" />
+                <Label text="{{ 'Final Total: €' + finalTotal }}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
