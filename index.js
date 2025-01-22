@@ -16,8 +16,10 @@ app.use(express.json());
 
 // Database connection
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:lblGPOCcJssblXXFcyvnmfViQgpEzBpl@postgres.railway.internal:5432/railway',
-  ssl: false
+  connectionString: 'postgresql://postgres:lblGPOCcJssblXXFcyvnmfViQgpEzBpl@viaduct.proxy.rlwy.net:26425/railway',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Auth Middleware
