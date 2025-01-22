@@ -109,6 +109,17 @@ app.get('/products', authenticateToken, async (req, res) => {
   }
 });
 
+// Test database connection
+app.get('/test-db', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ success: true, timestamp: result.rows[0].now });
+  } catch (error) {
+    console.error('Database connection error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
