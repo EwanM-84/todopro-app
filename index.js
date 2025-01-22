@@ -40,16 +40,21 @@ const authenticateToken = (req, res, next) => {
 app.post('/auth/signup', async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log('Signup attempt for email:', email);
+    
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Password hashed successfully');
     
     const result = await pool.query(
       'INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email',
       [email, hashedPassword]
     );
+    console.log('User inserted successfully:', result.rows[0]);
     
-    const token = jwt.sign({ id: result.rows[0].id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: result.rows[0].id }, process.env.JWT_SECRET || 'your-secret-key');
     res.json({ token });
   } catch (err) {
+    console.error('Signup error:', err);
     res.status(500).json({ error: err.message });
   }
 });
