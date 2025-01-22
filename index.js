@@ -16,10 +16,8 @@ app.use(express.json());
 
 // Database connection
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  connectionString: 'postgresql://postgres:lblGPOCcJssblXXFcyvnmfViQgpEzBpl@postgres.railway.internal:5432/railway',
+  ssl: false
 });
 
 // Auth Middleware
